@@ -10,12 +10,15 @@ faker = "*"
 [dev-packages]
 black = "*"
 isort = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.11"
 
 [scripts]
+init = "pre-commit install"
 isort = "isort ./ --line-length 79"
 black = "black ./ --line-length 79 -S"
-insert-company-data = "python -m scripts.dummy_data_companies"
-insert-department-data = "python -m scripts.dummy_data_departments"
+insert-company-data = "python -m src.scripts.dummy_data_companies"
+insert-department-data = "python -m src.scripts.dummy_data_departments"
+insert-employee-data = "python -m src.scripts.dummy_data_employees"

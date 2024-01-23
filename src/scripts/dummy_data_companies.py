@@ -6,10 +6,8 @@ from datetime import date, datetime
 from faker import Faker
 from faker.providers import DynamicProvider
 
-from db import cursor
-from models.company import Company
-from models.department import Department
-from models.employee import Employee
+from src.db import cursor
+from src.models.company import Company
 
 schema_name = os.getenv('SCHEMA_NAME', 'inexistent_schema')
 

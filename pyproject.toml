@@ -1,7 +1,5 @@
 [tool.pipenv]
-name = "data-upskill"
-version = "0.1.0"
-readme = "README.md"
+include-system-site-packages = false
 
 [tool.isort]
 line_length = 79

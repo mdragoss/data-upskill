@@ -15,4 +15,4 @@ class Employee:
     department_id: int
     salary: int
     id: Optional[int] = None
-    leave_date: Union[Optional[date], str] = 'null'
+    leave_date: Optional[date] = None

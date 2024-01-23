@@ -1,6 +1,6 @@
 import pyodbc
 
-from config import config
+from src.config import config
 
 connection = pyodbc.connect(
     Driver=config.DRIVER,

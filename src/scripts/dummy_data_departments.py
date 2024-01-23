@@ -5,8 +5,8 @@ from dataclasses import astuple
 from faker import Faker
 from faker.providers import DynamicProvider
 
-from db import cursor
-from models.department import Department
+from src.db import cursor
+from src.models.department import Department
 
 schema_name = os.getenv('SCHEMA_NAME', 'inexistent_schema')
 

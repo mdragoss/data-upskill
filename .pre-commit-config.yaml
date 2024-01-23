@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: debug-statements
+      - id: check-merge-conflict
+  - repo: local
+    hooks:
+      - name: Black
+        id: black
+        entry: pipenv run black
+        description: "Format code base according to PEP8"
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - name: isort
+        id: isort
+        entry: pipenv run isort
+        description: "Sort imports"
+        language: system
+        pass_filenames: false
+        always_run: true
