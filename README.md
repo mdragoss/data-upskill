@@ -21,3 +21,11 @@ Some commands runs on pre-commit, to help maintain a good quality.
 Dependency for Linux is [odbc driver install from microsoft](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16&tabs=alpine18-install%2Calpine17-install%2Cdebian8-install%2Credhat7-13-install%2Crhel7-offline).
 
 > For Arch can be found on Aur.
+
+---
+**NOTE**
+
+If you use in your tables `text` and `ntext` turn **off**
+`.fast_executemany = False`.
+
+---
