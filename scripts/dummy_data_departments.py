@@ -1,3 +1,4 @@
+"""Script to generate dummy data for departments table."""
 import os
 import random
 from dataclasses import astuple
@@ -6,6 +7,7 @@ from faker import Faker
 from faker.providers import DynamicProvider
 
 from src.db import cursor
+from src.helpers.util import tuple_factory
 from src.models.department import Department
 
 schema_name = os.getenv('SCHEMA_NAME', 'inexistent_schema')
@@ -13,15 +15,11 @@ schema_name = os.getenv('SCHEMA_NAME', 'inexistent_schema')
 
 if __name__ == '__main__':
     faker = Faker()
-    end_range = 1000
+    END_RANGE = 1000
 
     companies_id = cursor.execute(
         f'select id from [{schema_name}].company'
     ).fetchall()
-
-    tuple_factory = lambda x: tuple(
-        [value for value in x if value is not None]
-    )
 
     departments = []
     company_department = DynamicProvider(
@@ -45,7 +43,7 @@ if __name__ == '__main__':
     )
     faker.add_provider(company_department)
 
-    for _ in range(1, end_range):  # 1, 999
+    for _ in range(1, END_RANGE):  # 1, 999
         departments.append(
             astuple(
                 Department(
@@ -57,6 +55,7 @@ if __name__ == '__main__':
             )
         )
 
+    cursor.fast_executemany = True
     cursor.executemany(
         (
             f'insert into [{schema_name}].department '
@@ -65,3 +64,4 @@ if __name__ == '__main__':
         departments,
     )
     cursor.commit()
+    cursor.close()

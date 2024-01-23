@@ -29,3 +29,8 @@ exclude = '''
 )
 '''
 parameters = "-S"
+
+[tool.pylint]
+init-hook="import sys; sys.path.append('./src')"
+extension-pkg-allow-list = ["pyodbc"]
+disable = ["unnecessary-lambda-assignment", "consider-using-generator", "too-many-instance-attributes"]

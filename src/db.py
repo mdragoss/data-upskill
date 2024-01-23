@@ -1,13 +1,15 @@
+"""Create connection and cursor to the database."""
 import pyodbc
 
-from src.config import config
+from src.config import config  # pylint: disable=import-error
 
 connection = pyodbc.connect(
-    Driver=config.DRIVER,
-    Server=config.SERVER,
-    UID=config.USER,
-    PWD=config.PASSwORD,
-    Database=config.DATABASE,
-    TrustServerCertificate=config.TRUST_SERVER_CERTIFICATE,
+    Driver=config.driver,
+    Server=config.server,
+    UID=config.user,
+    PWD=config.password,
+    Database=config.database,
+    TrustServerCertificate=config.trust_server_certificate,
+    ColumnEncryption='Enabled',
 )
 cursor = connection.cursor()

@@ -23,3 +23,11 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+
+      - name: pylint
+        id: pylint
+        entry: pipenv run lint
+        description: "Check code base according to PEP8"
+        language: system
+        pass_filenames: false
+        always_run: true
