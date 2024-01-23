@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyodbc = "*"
+faker = "*"
+
+[dev-packages]
+black = "*"
+isort = "*"
+
+[requires]
+python_version = "3.11"
+
+[scripts]
+insert-company-data = "python -m scripts.dummy_data_companies"
+insert-department-data = "python -m scripts.dummy_data_departments"

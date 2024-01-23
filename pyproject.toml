@@ -1,0 +1,33 @@
+[tool.pipenv]
+name = "data-upskill"
+version = "0.1.0"
+readme = "README.md"
+
+[tool.isort]
+line_length = 79
+
+[tool.black]
+line-length = 79
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.github
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.pyre_configuration
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | pipenv/vendor
+  | pipenv/patched
+  | tests/pypi
+  | tests/test_artifacts
+  | get-pipenv.py
+  | pyproject.toml
+)
+'''
+parameters = "-S"
