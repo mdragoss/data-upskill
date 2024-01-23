@@ -2,7 +2,7 @@
 
 1. Create virtual env `python3 -m venv .venv` and activate it
 2. Install pipenv `pip3 install pipenv` then install project dependencies `pipenv install --dev`
-3. Copy .env.example into .env
+3. Copy `.env.example` into `.env` update variables accordingly
 4. Run commands with pipenv (pipenv **loads .env** file this will work as expected `os.getenv()` will return  valid env variable)
 
 Then use it for your up skill tables, generate and print custom data:
