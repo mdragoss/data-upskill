@@ -15,5 +15,7 @@ isort = "*"
 python_version = "3.11"
 
 [scripts]
+isort = "isort ./ --line-length 79"
+black = "black ./ --line-length 79 -S"
 insert-company-data = "python -m scripts.dummy_data_companies"
 insert-department-data = "python -m scripts.dummy_data_departments"

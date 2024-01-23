@@ -1,4 +1,5 @@
 import pyodbc
+
 from config import config
 
 connection = pyodbc.connect(

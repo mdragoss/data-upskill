@@ -1,5 +1,6 @@
-from dataclasses import dataclass
 import os
+from dataclasses import dataclass
+
 
 @dataclass
 class Config:
@@ -9,5 +10,6 @@ class Config:
     USER: str = os.getenv('UID', '')
     PASSwORD: str = os.getenv('PWD', '')
     TRUST_SERVER_CERTIFICATE: str = os.getenv('TRUST_SERVER_CERTIFICATE', 'No')
+
 
 config = Config()

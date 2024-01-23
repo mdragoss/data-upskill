@@ -1,13 +1,15 @@
+import os
 import random
 from dataclasses import astuple
 from datetime import date, datetime
+
+from faker import Faker
+from faker.providers import DynamicProvider
+
+from db import cursor
 from models.company import Company
 from models.department import Department
 from models.employee import Employee
-from faker import Faker
-from faker.providers import DynamicProvider
-from db import cursor
-import os
 
 schema_name = os.getenv('SCHEMA_NAME', 'inexistent_schema')
 
@@ -36,7 +38,6 @@ if __name__ == '__main__':
     )
 
     faker.add_provider(company_idno)
-    
 
     tuple_factory = lambda x: tuple(
         [value for value in x if value is not None]

@@ -1,9 +1,11 @@
-from dataclasses import astuple
+import os
 import random
+from dataclasses import astuple
+
 from faker import Faker
 from faker.providers import DynamicProvider
+
 from db import cursor
-import os
 from models.department import Department
 
 schema_name = os.getenv('SCHEMA_NAME', 'inexistent_schema')
