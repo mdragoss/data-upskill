@@ -59,7 +59,7 @@ if __name__ == '__main__':
     cursor.executemany(
         (
             f'insert into [{schema_name}].department '
-            '(department_name, department_description, company_id) values (?,?,?)'
+            '(department_name, department_description) values (?,?)'
         ),
         departments,
     )

@@ -41,12 +41,16 @@ if __name__ == '__main__':
     faker.add_provider(company_idno)
 
     for _ in range(1, END_RANGE):  # 1, 999
+        company_name = faker.company()
+        url_company_name = ''.join(
+            company_name.lower().replace(',', '-').split()
+        )
         companies.append(
             astuple(
                 Company(
-                    company_name=faker.company(),
+                    company_name=company_name,
                     idno=faker.company_idno(),
-                    website=faker.url(),
+                    website=''.join(['https://', url_company_name, '.com']),
                     created_at=datetime.utcnow(),
                     is_active=1,
                     founded_year=random.randint(2000, 2020),
