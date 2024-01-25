@@ -1,4 +1,6 @@
-"""Script to generate dummy data for departments table."""
+"""Script to generate dummy data for departments table.
+If relationship between company and department is 1:N, then this script.
+"""
 import os
 import random
 from dataclasses import astuple
@@ -44,11 +46,12 @@ if __name__ == '__main__':
     faker.add_provider(company_department)
 
     for _ in range(1, END_RANGE):  # 1, 999
+        department_name = faker.company_department()
         departments.append(
             astuple(
                 Department(
-                    department_name=faker.company_department(),
-                    department_description='Lorem Ipsum',
+                    department_name=department_name,
+                    department_description=f'{department_name} Description',
                     company_id=random.choice(list(companies_id))[0],
                 ),
                 tuple_factory=tuple_factory,

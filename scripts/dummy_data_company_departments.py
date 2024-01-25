@@ -1,3 +1,7 @@
+"""Insert dummy data into company_department table.
+If relationship between company and department is M:N, then this script.
+"""
+
 import os
 import random
 
