@@ -1,5 +1,7 @@
 # Generate dummy data
 
+> This project aims to up personal skills and personal knowledge about databases, recommendation engine using Python and SQL Server. It will leverage personal skills and abilities.
+
 1. Create virtual env `python3 -m venv .venv` and activate it
 2. Install pipenv `pip3 install pipenv` then install project dependencies `pipenv install --dev`
 3. Copy `.env.example` into `.env` update variables accordingly
