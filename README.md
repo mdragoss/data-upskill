@@ -15,7 +15,7 @@ pipenv run script-name # to list all scripts write in terminal pipenv scripts
 ## Development
 Before push code into repo use `pipenv run init`.
 
-Some commands runs on pre-commit, to help maintain a good quality.
+To help maintain a good quality exists precommit command runs some linting and other stuff.
 
 
 Dependency for Linux is [odbc driver install from microsoft](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16&tabs=alpine18-install%2Calpine17-install%2Cdebian8-install%2Credhat7-13-install%2Crhel7-offline).
