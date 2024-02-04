@@ -1,6 +1,6 @@
 # Generate dummy data
 
-> This project aims to up personal skills and personal knowledge about databases, recommendation engine using Python and SQL Server. It will leverage personal skills and abilities.
+> This project aims to up personal skills and personal knowledge about databases, recommendation engine using Python and SQL Server. It will leverage personal skills and abilities, this project was internally only and GitHub was as a platform for sharing general things, on repository is used general data and information, other requirements and task was executed in Azure Data Studio using Sql Scripting.
 
 1. Create virtual env `python3 -m venv .venv` and activate it
 2. Install pipenv `pip3 install pipenv` then install project dependencies `pipenv install --dev`
