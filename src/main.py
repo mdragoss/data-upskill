@@ -1,12 +1,13 @@
 import argparse
-# from db import cursor
+import time
+from db import cursor
 import csv
 import os
 import sys
-import time
 from pathlib import Path
-from typing import List, Tuple
+from typing import Generator, List, Tuple
 
+from helpers.util import time_function
 from pyodbc import Cursor
 
 abs_path = os.path.abspath(os.path.dirname(__name__))
@@ -17,9 +18,9 @@ parser = argparse.ArgumentParser(
     description='Insert bulk data into SQL Server',
 )
 
-parser.add_argument(
-    'path', default='fixtures', type=Path, help='path to the fixtures folder'
-)
+# parser.add_argument(
+#     'path', default='fixtures', type=Path, help='path to the fixtures folder'
+# )
 parser.add_argument(
     '-f', '--file', default='dataset.csv', help='file name to read data from'
 )
@@ -58,7 +59,7 @@ def validate_schema_and_name(schema: str, table: str):
         sys.exit(1)
 
 
-def validate_file(path: Path, file: str):
+def validate_path_and_file(path: Path, file: str):
     if not path.is_dir():
         print(f'Path {path} does not exist.')
         sys.exit(1)
@@ -67,17 +68,15 @@ def validate_file(path: Path, file: str):
         print(f'File {file} does not exist in path {path}.')
         sys.exit(1)
 
+    return os.path.join(path, file)
 
-def time_function(func):
-    def wrapper(*args, **kwargs):
-        start = time.perf_counter()
-        func(*args, **kwargs)
-        end = time.perf_counter()
-        print(
-            f'Function {func.__name__} took {end - start} seconds to complete'
-        )
 
-    return wrapper
+def validate_file(file_path: str):
+    if not os.path.isfile(file_path):
+        print(f'File {file_path} does not exist.')
+        sys.exit(1)
+
+    return file_path
 
 
 @time_function
@@ -94,7 +93,8 @@ def insert_with_pyodbc(
         cursor.fast_executemany = True
 
     column_names = ', '.join(columns)
-    values = ', '.join(['?' for _ in range(len(dataset[0]))])
+    values = ', '.join(['?' for _ in range(len(columns))])
+    del columns
 
     cursor.executemany(
         f'insert into [{schema}].{table} ({column_names}) values ({values})',
@@ -111,4 +111,32 @@ def insert_with_pandas():
 if __name__ == '__main__':
     validate_arguments(args.pyodbc, args.pandas)
     validate_schema_and_name(args.schema, args.table)
-    validate_file(args.path, args.file)
+    csv_file = validate_file(args.file)
+    dataset = []
+
+    with open(csv_file, 'r', newline='') as csvfile:
+        read_file = csv.reader(csvfile, delimiter=',')
+        columns = next(read_file)
+        for row in read_file:
+            dataset.append(
+                tuple(
+                    [
+                        (
+                            row_data
+                            if row_data.lower() != 'null' or row_data == ''
+                            else None
+                        )
+                        for row_data in row
+                    ]
+                )
+            )
+
+    if args.pyodbc:
+        insert_with_pyodbc(
+            cursor,
+            True,
+            columns=columns,
+            dataset=dataset,
+            table=args.table,
+            schema=args.schema,
+        )

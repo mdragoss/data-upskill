@@ -14,6 +14,16 @@ pipenv run script-name # to list all scripts write in terminal pipenv scripts
 ```
 > If you don't want to use pipenv export variables with `.bashrc` | `.zshrc`.
 
+or run 
+```sh
+export DRIVER="{ODBC Driver 18 for SQL Server}" \
+export SERVER=some-server \
+export DATABASE=some-database \
+export USER=some-user \
+export PASS=some-pass \
+export SCHEMA_NAME=some-schema-name
+```
+
 ## Development
 Before push code into repo use `pipenv run init`.
 
