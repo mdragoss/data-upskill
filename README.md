@@ -14,7 +14,7 @@ pipenv run script-name # to list all scripts write in terminal pipenv scripts
 ```
 > If you don't want to use pipenv export variables with `.bashrc` | `.zshrc`.
 
-or run 
+or run
 ```sh
 export DRIVER="{ODBC Driver 18 for SQL Server}" \
 export SERVER=some-server \
